@@ -18,7 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Arrondissements.cpp">
+    <ClCompile Include="Chemin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Arrondissement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,7 +29,10 @@
     <ClInclude Include="Graph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Arrondissements.h">
+    <ClInclude Include="Arrondissement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Chemin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
