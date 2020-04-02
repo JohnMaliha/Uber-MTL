@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Chemin.h"
 #include "Arrondissement.h"
 using namespace std;
