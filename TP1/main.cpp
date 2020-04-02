@@ -12,7 +12,7 @@ int main() {
 	graphe.remplirListeArrondissements;
 	graphe.remplirListeChemins;
 
-	creerGraphe(graphe);
+	
 	afficherGraphe(graphe);
 	plusCourtChemin(graphe.liste_chemins);
 	traiterRequetes();
@@ -35,8 +35,33 @@ de Dijkstra, le plus court chemin entre un sommet et un autre. L’origine (point 
 et la destination (sommet d’arrivée) doivent être passées en paramètres. La fonction affiche le
 pourcentage final d’énergie dans les batteries de la voiture, le plus court chemin utilisé (d’après
 la liste de ses sommets, selon le format de l’annexe) et la longueur de ce dernier en minutes.*/
-void plusCourtChemin() {
+void plusCourtChemin(int orig, int dest) {
+	int trajetsLongueurs[20]; // L
+	bool trajetsFaits[20]; // S
+	for (int i = 0; i < 20; i++) { trajetsLongueurs[i] = 99999; trajetsFaits[i] = 0;} // tous les chemins infinis et aucun trajet fait
+	trajetsLongueurs[orig] = 0; // orig a zero
+	trajetsFaits[orig] = 1; // sommet orig fait
+	while (trajetsFaits[dest] == false) {
+		for (int j = 0; j < 20; j++) { 
+			if (trajetsFaits[j]) {
+				int trajetMin = 99999;
+				int minID = j;
+				for (int k = 0; k < 20; k++) {
+					if (tableauChemins[j][k] < trajetsLongueurs[k] && trajetsFaits[k] = false) { // regarde les voisins non atteints de chaque sommets fait
+						if (tableauChemins[j][k] + trajetsLongueurs[j] < trajetMin){
+							trajetMin = tableauChemins[j][k] + trajetsLongueurs[j];
+							minID = k;
+						}
+						trajetsLongueurs[minID] = tableauChemins[j][minID] + trajetsLongueurs[j];
+						trajetsFaits[minID] = true;
+					}
+				}
+			}
+		}
+	}
 }
+
+
 
 /*Écrire la fonction ”traiterRequetes()” qui permet de déterminer, en vous inspirant de l’algorithme
 de Dijkstra, la faisabilité de requêtes de clients(nombre maximum de quatre clients à la fois à
