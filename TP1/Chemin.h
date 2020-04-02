@@ -6,7 +6,8 @@ using namespace std;
 class Chemin
 {
 public:
-	Chemin(int , Arrondissement , Arrondissement);
+
+	Chemin(int , Arrondissement* , Arrondissement*);
 	Chemin() {
 		origine_ = nullptr;
 		destination_ = nullptr;
@@ -15,16 +16,16 @@ public:
 	};
 
 	int get_trajet() const;
-	Arrondissement get_origine() const;
-	Arrondissement get_destination() const;
+	Arrondissement* get_origine() const;
+	Arrondissement* get_destination() const;
 
 	void set_trajet(int);
-	void set_origine(Arrondissement);
-	void set_destination(Arrondissement);
+	void set_origine(Arrondissement*); // prend un ptr, pr match avec lattribut
+	void set_destination(Arrondissement*);
 
 private:
 	int trajet_;
-	Arrondissement* origine_;
+	Arrondissement* origine_; // pt a changer
 	Arrondissement* destination_;
 	int nb_trajtet_modifié;
 };

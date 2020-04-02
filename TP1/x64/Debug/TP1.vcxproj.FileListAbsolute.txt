@@ -1,0 +1,2 @@
+C:\Users\johnm\Desktop\poly\Session 3\log 2810\TD\Tp1\TP1_Discrete\TP1\x64\Debug\TP1.exe
+C:\Users\johnm\Desktop\poly\Session 3\log 2810\TD\Tp1\TP1_Discrete\TP1\x64\Debug\TP1.pdb

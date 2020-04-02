@@ -1,3 +1,5 @@
+#pragma once // core redefine, eviter la redefinition
+
 #include <string>
 #include <string_view>
 using namespace std;
@@ -6,6 +8,7 @@ class Arrondissement
 {
 public:
 	Arrondissement(int , bool);
+
 	Arrondissement() {
 		numero_ = -1;
 		a_recharge_ = 0;
