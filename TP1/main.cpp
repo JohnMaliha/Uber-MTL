@@ -51,10 +51,13 @@ int main() {
 		cout << "Menu" << endl;
 		break;
 
+<<<<<<< HEAD
 		//case  :
 
 		//	break;
 
+=======
+>>>>>>> 166f18809ead4b88ffacac8c86e30b93a7a76b87
 	case 'a':
 		cout << "Lecture nouvelle carte" << endl;
 		break;
