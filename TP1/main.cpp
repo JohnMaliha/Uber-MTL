@@ -2,6 +2,7 @@
 #include <string>
 #include<vector>
 #include<fstream>
+#include <sstream>
 
 #include "Graph.h"
 #include"Arrondissement.h"
@@ -10,7 +11,7 @@
 using namespace std;
 
 void lireFichierPremierePartie(const string& nomFichier); 
-void quit(); 
+//void quit(); 
 
 
 
@@ -18,26 +19,26 @@ int main() {
 
 	lireFichierPremierePartie("arrondissements.txt");
 
-	
+
 
 	// ===============================Algo Dijks==========================// 
-	/*
+	
 	Graph graphe;
 	graphe.remplirListeArrondissements;
 	graphe.remplirListeChemins;
 
-	
+
 	afficherGraphe(graphe);
 	plusCourtChemin(graphe.liste_chemins);
 	traiterRequetes();
-	*/
+	
 
 	// ===============================Algo Dijks==========================// 
 	//=======================Affichage====================================//
 		//Menu
 	cout << endl << " ----------------------- MENU -----------------------" << endl << endl;
 
-	//controle 
+	//controle
 	quit();
 	cin.clear();
 	char value = { };
@@ -52,7 +53,7 @@ int main() {
 
 		//case  :
 
-		//	break; 
+		//	break;
 
 	case 'a':
 		cout << "Lecture nouvelle carte" << endl;
@@ -79,22 +80,22 @@ int main() {
 /*Écrire une fonction récursive “creerGraphe()” qui permet de créer le graphe représentant les
 routes et les points centraux des arrondissements (sommets) à partir d’un fichier dont le nom est
 passé en paramètre.*/
-/*
+
 void creerGraphe() {
 }
-*/
+
 /*Écrire une fonction “afficherGraphe()” qui permet d’afficher le graphe (cf. annexe a. pour un
 exemple d’affichage de la carte sous forme de graphe).*/
-/*
+
 void afficherGraphe() {
 }
-*/
-	/*Écrire la fonction ”plusCourtChemin()” qui permet de déterminer, en vous inspirant de l’algorithme
+
+/*Écrire la fonction ”plusCourtChemin()” qui permet de déterminer, en vous inspirant de l’algorithme
 de Dijkstra, le plus court chemin entre un sommet et un autre. L’origine (point de départ)
 et la destination (sommet d’arrivée) doivent être passées en paramètres. La fonction affiche le
 pourcentage final d’énergie dans les batteries de la voiture, le plus court chemin utilisé (d’après
 la liste de ses sommets, selon le format de l’annexe) et la longueur de ce dernier en minutes.*/
-/*
+
 void plusCourtChemin(int orig, int dest) {
 	int trajetsLongueurs[20]; // L
 	bool trajetsFaits[20]; // S
@@ -102,7 +103,7 @@ void plusCourtChemin(int orig, int dest) {
 	trajetsLongueurs[orig] = 0; // orig a zero
 	trajetsFaits[orig] = 1; // sommet orig fait
 	while (trajetsFaits[dest] == false) {
-		for (int j = 0; j < 20; j++) { 
+		for (int j = 0; j < 20; j++) {
 			if (trajetsFaits[j]) {
 				int trajetMin = 99999;
 				int minID = j;
@@ -121,7 +122,7 @@ void plusCourtChemin(int orig, int dest) {
 	}
 }
 
-*/
+
 
 /*Écrire la fonction ”traiterRequetes()” qui permet de déterminer, en vous inspirant de l’algorithme
 de Dijkstra, la faisabilité de requêtes de clients(nombre maximum de quatre clients à la fois à
@@ -132,11 +133,11 @@ d’arrivée(leur ordre dans le fichier).La fonction affiche le pourcentage final d
 batteries de la voiture, le plus court chemin utilisé(les sommets où les clients ont été ramassés,
 ceux où la voiture a été rechargée et les identifiants des clients doivent être clairment identifiés)
 et la longueur de ce dernier en minutes.*/
-/*
+
 void traiterRequetes() {
 }
 
-*/
+
 // ===============================Algo Dijks==========================// 
 
 
@@ -148,9 +149,7 @@ void traiterRequetes() {
 void quit() {
 	string quit;
 	cin >> quit;
-
 	if (quit == "quitter" || quit == "Quitter") {
-
 		cout << "menu" << endl;
 		return;
 	}
@@ -161,25 +160,57 @@ void quit() {
 //Fonction pour la lecture 
 void lireFichierPremierePartie(const string& nomFichier)
 {
-	Liste_Coord tableauPremierePartie;
-
+	char separateur = ',';
+	string LigneAvecVirgule;
+	vector<int> arrondissement;
+	vector<int> borne;
+	vector<int> ArrondissementBorne;
+	vector<int> areteEntreArrondissement;
+	string LigneSansVirgule;
 	ifstream fichierALire(nomFichier);
+
 	if (fichierALire.fail())
 		cout << "Probleme d'ouverture!" << endl;
-
 	else {
 		int i = 0;
 		while (!ws(fichierALire).eof()) {
-			for (int pos = 0; i < tableauPremierePartie.getNbElement(); pos++) {
-
-				//fichierALire >> tableauPremierePartie.liste[pos].x >> ws >> tableauPremierePartie.liste[pos].y >> ws >> tableauPremierePartie.liste[pos].z;
-				//cout << tableauPremierePartie.liste[pos].x << "," << tableauPremierePartie.liste[pos].y << "," << tableauPremierePartie.liste[pos].z << endl;
+			getline(fichierALire, LigneAvecVirgule);
+			stringstream ChaineDeCaractere(LigneAvecVirgule);//brise la chaine de caractere
+			while (getline(ChaineDeCaractere, LigneSansVirgule, separateur)) {
+				ArrondissementBorne.push_back(stoi(LigneSansVirgule));//stoi: convertit string en int
 			}
+		}
+		//stocker les bornes de recharge
+		int SizeVector = ArrondissementBorne.size();
+		int nbImpairs = 19;
+		for (int n = 0; n < nbImpairs; n++) {
+			int ElementsImpairs = 2 * n + 1;
+			borne.push_back(ArrondissementBorne[ElementsImpairs]);
+		}
+		for (auto it : borne) {
+			cout << it << endl;
+		}
 
-			i++;
-			cout << endl << i;
+		//stocker les arrondissements
+		cout << endl << endl;
+		int pairs = 19;
+		for (int n = 0; n < pairs; n++) {
+			int ElementsPairs = 2* n;
+			arrondissement.push_back(ArrondissementBorne[ElementsPairs]);
+		}
+		for (auto it : arrondissement) {
+			cout << it << endl;
+		}
+
+		//stocker les arrondissements avec les arêtes
+		cout << endl << endl;
+		int positionDeDepart = 38;
+		for (positionDeDepart; positionDeDepart < ArrondissementBorne.size(); positionDeDepart++) {
+			areteEntreArrondissement.push_back(ArrondissementBorne[positionDeDepart]);
+		}
+		for (auto it : areteEntreArrondissement) {
+			cout << it << endl;
 		}
 		fichierALire.close();
 	}
-
 }
