@@ -34,6 +34,7 @@ int main() {
 	
 
 	// ===============================Algo Dijks==========================// 
+
 	//=======================Affichage====================================//
 		//Menu
 	cout << endl << " ----------------------- MENU -----------------------" << endl << endl;
@@ -51,13 +52,6 @@ int main() {
 		cout << "Menu" << endl;
 		break;
 
-<<<<<<< HEAD
-		//case  :
-
-		//	break;
-
-=======
->>>>>>> 166f18809ead4b88ffacac8c86e30b93a7a76b87
 	case 'a':
 		cout << "Lecture nouvelle carte" << endl;
 		break;
@@ -113,11 +107,8 @@ void plusCourtChemin(int orig, int dest) {
 	trajetsLongueurs[orig] = 0; // orig a zero
 	trajetsFaits[orig] = 1; // sommet orig fait
 	while (trajetsFaits[dest] == false) {
-<<<<<<< HEAD
-		for (int j = 0; j < 20; j++) {
-=======
+		
 		for (int j = 0; j < 20; j++) { //pour tous les sommets deja integrés
->>>>>>> e49a0812c14d90dd2bcb56619600ec9780a1a318
 			if (trajetsFaits[j]) {
 				int trajetMin = 99999;
 				int minID = j;

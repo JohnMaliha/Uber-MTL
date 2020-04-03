@@ -4,10 +4,6 @@
 class Coordonnees {
 public:
 	Coordonnees(); 
-	int x;
-	int y;
-	int z;
-
 	//std::vector<int> valeurs; 
 	
 };
