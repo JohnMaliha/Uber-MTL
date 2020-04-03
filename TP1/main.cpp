@@ -50,10 +50,6 @@ int main() {
 		cout << "Menu" << endl;
 		break;
 
-		//case  :
-
-		//	break; 
-
 	case 'a':
 		cout << "Lecture nouvelle carte" << endl;
 		break;
