@@ -18,8 +18,9 @@ void lireFichierPremierePartie(const string& nomFichier);
 int main() {
 
 	lireFichierPremierePartie("arrondissements.txt");
-
-
+	Graph graphe;
+	int a = 0;
+	/*
 
 	// ===============================Algo Dijks==========================// 
 	
@@ -69,7 +70,7 @@ int main() {
 		break;
 	}
 	//=======================Affichage====================================//
-
+	*/
 	return 0;
 }
 
@@ -77,13 +78,13 @@ int main() {
 /*Écrire une fonction récursive “creerGraphe()” qui permet de créer le graphe représentant les
 routes et les points centraux des arrondissements (sommets) à partir d’un fichier dont le nom est
 passé en paramètre.*/
-
+/*
 void creerGraphe() {
 }
 
 /*Écrire une fonction “afficherGraphe()” qui permet d’afficher le graphe (cf. annexe a. pour un
 exemple d’affichage de la carte sous forme de graphe).*/
-
+/*
 void afficherGraphe() {
 }
 
@@ -94,6 +95,7 @@ pourcentage final d’énergie dans les batteries de la voiture, le plus court chem
 la liste de ses sommets, selon le format de l’annexe) et la longueur de ce dernier en minutes.*/
 
 void plusCourtChemin(int orig, int dest) {
+	Graph graphe;
 	int trajetsLongueurs[20]; // L
 	bool trajetsFaits[20]; // S
 
@@ -113,16 +115,16 @@ void plusCourtChemin(int orig, int dest) {
 				int trajetMin = 99999;
 				int minID = j;
 				for (int k = 0; k < 20; k++) {
-					if (tableauChemins[j][k] < trajetsLongueurs[k] && trajetsFaits[k] = false) { // regarde les voisins non integrés de chaque sommets fait
-						if (tableauChemins[j][k] + trajetsLongueurs[j] < trajetMin){ // on recupere le sommet non connu avec le chemin le plus court pour chaque sommet connu
-							trajetMin = tableauChemins[j][k] + trajetsLongueurs[j];
-							minICheminSommet = Chemin(tableauChemins[j][k], new Arrondissement(j, liste_chemins[j].a_recharge_), new Arrondissement(k, liste_chemins[k].a_recharge_));
+					if (graphe.liste_trajets[j][k] < trajetsLongueurs[k] && trajetsFaits[k] == false) { // regarde les voisins non integrés de chaque sommets fait
+						if (graphe.liste_trajets[j][k] + trajetsLongueurs[j] < trajetMin){ // on recupere le sommet non connu avec le chemin le plus court pour chaque sommet connu
+							trajetMin = graphe.liste_trajets[j][k] + trajetsLongueurs[j];
+							minICheminSommet = Chemin(graphe.liste_trajets[j][k], Arrondissement(j, graphe.liste_chemins[j].get_origine().ARecharge()), Arrondissement(k, graphe.liste_chemins[k].get_destination().ARecharge()));
 						}						
 					}
 				}
 				if (minICheminSommet.get_trajet() < minICheminTotal.get_trajet()) { minICheminTotal = minICheminSommet; } // meilleur sommet inconnu voisin de tous les sommets connus
-				trajetsLongueurs[minICheminTotal.get_destination()->getNumero()] = tableauChemins[j][minICheminTotal.get_destination()->getNumero()] + trajetsLongueurs[j]; // om met a jour sa longueur
-				trajetsFaits[minICheminTotal.get_destination()->getNumero()] = true; // on l'ajout aux soommets connnus
+				trajetsLongueurs[minICheminTotal.get_destination().getNumero()] = graphe.liste_trajets[j][minICheminTotal.get_destination().getNumero()] + trajetsLongueurs[j]; // om met a jour sa longueur
+				trajetsFaits[minICheminTotal.get_destination().getNumero()] = true; // on l'ajout aux soommets connnus
 				cheminsPris[o++] = minICheminTotal;  // on le met dans le tableau de chemins essayés
 			}
 		}
@@ -133,23 +135,23 @@ void plusCourtChemin(int orig, int dest) {
 	int listeFinale[20];
 	int y = o;
 	int x = 1;
-	int derniereDest = cheminsPris[o].get_origine()->getNumero();
-	listeFinale[0] = cheminsPris[o].get_destination()->getNumero();
+	int derniereDest = cheminsPris[o].get_origine().getNumero();
+	listeFinale[0] = cheminsPris[o].get_destination().getNumero();
 	minutes += cheminsPris[o].get_trajet();
 	while (!bonChemin)
 	{
-		while (cheminsPris[y - 1].get_destination()->getNumero() != derniereDest)
+		while (cheminsPris[y - 1].get_destination().getNumero() != derniereDest)
 		{
 			y--;
 		}
 		minutes += cheminsPris[y - 1].get_trajet(); 
-		if (cheminsPris[y-1].get_origine()->getNumero() == orig) {
+		if (cheminsPris[y-1].get_origine().getNumero() == orig) {
 			bonChemin = true;
 			listeFinale[x] = orig;
 			break;
 		}
-		listeFinale[x++] = cheminsPris[y - 1].get_origine()->getNumero();
-		derniereDest = cheminsPris[y - 1].get_origine()->getNumero();
+		listeFinale[x++] = cheminsPris[y - 1].get_origine().getNumero();
+		derniereDest = cheminsPris[y - 1].get_origine().getNumero();
 	}
 	batterie -= minutes; //donner le pourcentage de batterie qui reste
 }
@@ -165,7 +167,7 @@ d’arrivée(leur ordre dans le fichier).La fonction affiche le pourcentage final d
 batteries de la voiture, le plus court chemin utilisé(les sommets où les clients ont été ramassés,
 ceux où la voiture a été rechargée et les identifiants des clients doivent être clairment identifiés)
 et la longueur de ce dernier en minutes.*/
-
+/*
 void traiterRequetes() {
 }
 
@@ -187,11 +189,12 @@ void quit() {
 	}
 	return;
 }
-
+*/
 //========================Lecture=======================// 
 //Fonction pour la lecture 
 void lireFichierPremierePartie(const string& nomFichier)
 {
+
 	char separateur = ',';
 	string LigneAvecVirgule;
 	vector<int> arrondissement;

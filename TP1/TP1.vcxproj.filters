@@ -43,10 +43,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\arrondissements.txt">
+    <Text Include="arrondissements.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="..\requetes.txt">
+    <Text Include="requetes.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

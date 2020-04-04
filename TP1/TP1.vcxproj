@@ -150,8 +150,8 @@
     <ClInclude Include="Arrondissement.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\arrondissements.txt" />
-    <Text Include="..\requetes.txt" />
+    <Text Include="arrondissements.txt" />
+    <Text Include="requetes.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

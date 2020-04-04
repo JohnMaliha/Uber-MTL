@@ -9,25 +9,25 @@ class Chemin
 {
 public:
 
-	Chemin(int , Arrondissement* , Arrondissement*);
+	Chemin(int , Arrondissement , Arrondissement);
 	Chemin() {
-		origine_ = nullptr;
-		destination_ = nullptr;
+		origine_ = Arrondissement();
+		destination_ = Arrondissement();
 		trajet_ =99999;
 		nb_trajtet_modifié = 0;
 	};
 
 	int get_trajet() const;
-	Arrondissement* get_origine() const;
-	Arrondissement* get_destination() const;
+	Arrondissement get_origine() const;
+	Arrondissement get_destination() const;
 
 	void set_trajet(int);
-	void set_origine(Arrondissement*); // prend un ptr, pr match avec lattribut
-	void set_destination(Arrondissement*);
+	void set_origine(Arrondissement); // prend un ptr, pr match avec lattribut
+	void set_destination(Arrondissement);
 
 private:
 	int trajet_;
-	Arrondissement* origine_; // pt a changer
-	Arrondissement* destination_;
+	Arrondissement origine_;
+	Arrondissement destination_;
 	int nb_trajtet_modifié;
 };
