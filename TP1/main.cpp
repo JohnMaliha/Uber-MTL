@@ -15,7 +15,7 @@ const string& requetes = "requetes.txt";
 
 
 void lireFichierPremierePartie(const string& nomFichier); 
-//void quit(); 
+void quit(); 
 
 
 
@@ -36,7 +36,7 @@ int main() {
 	afficherGraphe(graphe);
 	plusCourtChemin(graphe.liste_chemins);
 	traiterRequetes();
-	
+	*/
 
 	// ===============================Algo Dijks==========================// 
 
@@ -74,7 +74,7 @@ int main() {
 		break;
 	}
 	//=======================Affichage====================================//
-	*/
+	
 	return 0;
 }
 
@@ -175,7 +175,7 @@ d’arrivée(leur ordre dans le fichier).La fonction affiche le pourcentage final d
 batteries de la voiture, le plus court chemin utilisé(les sommets où les clients ont été ramassés,
 ceux où la voiture a été rechargée et les identifiants des clients doivent être clairment identifiés)
 et la longueur de ce dernier en minutes.*/
-/*
+
 void traiterRequetes() {
 }
 
@@ -197,7 +197,7 @@ void quit() {
 	}
 	return;
 }
-*/
+
 //========================Lecture=======================// 
 //Fonction pour la lecture 
 void lireFichierPremierePartie(const string& nomFichier)

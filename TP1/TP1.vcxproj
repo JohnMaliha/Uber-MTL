@@ -138,14 +138,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Coordonne.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Arrondissement.cpp" />
     <ClCompile Include="Chemin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chemin.h" />
-    <ClInclude Include="Coordonne.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Arrondissement.h" />
   </ItemGroup>
