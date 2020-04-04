@@ -10,6 +10,10 @@
 #include"Coordonne.h"
 using namespace std;
 
+const string& arrondissement = "arrondissements.txt";
+const string& requetes = "requetes.txt"; 
+
+
 void lireFichierPremierePartie(const string& nomFichier); 
 //void quit(); 
 
@@ -78,13 +82,17 @@ int main() {
 /*Écrire une fonction récursive “creerGraphe()” qui permet de créer le graphe représentant les
 routes et les points centraux des arrondissements (sommets) à partir d’un fichier dont le nom est
 passé en paramètre.*/
-/*
+
 void creerGraphe() {
+
+	lireFichierPremierePartie(arrondissement); 
+	
+
 }
 
 /*Écrire une fonction “afficherGraphe()” qui permet d’afficher le graphe (cf. annexe a. pour un
 exemple d’affichage de la carte sous forme de graphe).*/
-/*
+
 void afficherGraphe() {
 }
 
