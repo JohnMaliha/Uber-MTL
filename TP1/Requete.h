@@ -1,15 +1,15 @@
 #pragma once
 #ifndef Requette_h
 #define Requette_h
-#include<string>
 
+using namespace std; 
 
 class Requete {
 
 public: 
 
 	Requete(); 
-	void LireRequete(const string& nomFichier); 
+	void LireRequete(const string& Fichier); 
 
 private:
 

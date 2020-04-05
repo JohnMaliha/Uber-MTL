@@ -12,7 +12,7 @@ Requete::Requete() {
 
 }
 
-void Requete::LireRequete(const string& nomFichier) {
+void Requete::LireRequete(const string& Fichier) {
 
 
 }
