@@ -45,6 +45,7 @@ void Graph::CreerGraphe(const string& nomFichier) {
 		for (int n = 0; n < nbImpairs; n++) {
 			int ElementsImpairs = 2 * n + 1;
 			borne.push_back(ArrondissementBorne[ElementsImpairs]);
+			//cout << n << "  "<< borne[n] <<endl;
 		}
 
 
@@ -54,11 +55,15 @@ void Graph::CreerGraphe(const string& nomFichier) {
 		for (int n = 0; n < pairs; n++) {
 			int ElementsPairs = 2 * n;
 			arrondissement.push_back(ArrondissementBorne[ElementsPairs]);
+
 		}
 
 
 		for (int i = 0; i < 19; i++) {
 			liste_arrondissements[i] = Arrondissement(arrondissement[i], borne[i]);
+
+			//cout << graph.liste_arrondissements[i].getNumero() << endl;
+			//	cout << graph.liste_arrondissements[i].ARecharge() <<endl; 
 		}
 
 		//stocker les arrondissements avec les arêtes
@@ -78,9 +83,9 @@ void Graph::CreerGraphe(const string& nomFichier) {
 		fichierALire.close();
 	}
 
-	for (int a = 0; a < 21; a++)
+	for (int a = 0; a < 20; a++)
 	{
-		for (int b = 0; b < 21; b++)
+		for (int b = 0; b < 20; b++)
 		{
 			liste_trajets[a][b] = 99999;
 		}
@@ -191,19 +196,25 @@ void Graph::plusCourtChemin(int origine, int destination) {
 	exemple d’affichage de la carte sous forme de graphe).*/
 void Graph::AfficherGraphe() {
 
-	Graph graphe; 
-	graphe.CreerGraphe(Fichierarrondissement); 
+	Graph graphe1;
+	graphe1.CreerGraphe(Fichierarrondissement);
 
-	for (int i = 0; i < 21; i++) {
+	for (int i = 0; i < 19; i++) { // le noeud origine
 
-		for (int j = 0; j < 21; j++) {
+		cout << "noeud " << i << endl;
+		cout << graphe1.liste_arrondissements[i].getNumero() << " a borne? " << graphe1.liste_arrondissements[i].ARecharge() << endl << endl;
 
 
-		}
+		//for (int j = 1; j < 19; j++) { // les autres noeuds reliser au premier.  
 
+			//if (graphe.liste_arrondissements[i].getNumero()  ) {
+
+				//cout << "(" << graphe.liste_arrondissements[i].getNumero() << "," << graphe.liste_arrondissements[i].ARecharge() << "," << "(" << "(";
+				//cout << graphe.liste_chemins[i].get_destination().getNumero() << "," << graphe.liste_chemins[i].get_trajet() << ",";
+			//}
+
+	//	}
+		//cout << endl; 
 	}
-
-	
-
 
 }

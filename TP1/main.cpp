@@ -24,9 +24,11 @@ int main() {
 	//lireFichierPremierePartie("arrondissements.txt");
 	Graph graphe;
 	graphe.CreerGraphe(arrondissement); 
+	graphe.AfficherGraphe(); 
 	int orig = 14;
 	int dest = 12;
 	graphe.plusCourtChemin(orig, dest);
+
 	/*
 
 	// ===============================Algo Dijks==========================// 
