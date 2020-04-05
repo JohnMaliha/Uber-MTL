@@ -5,5 +5,7 @@ C:\Users\johnm\Desktop\poly\Session 3\log 2810\TD\Tp1\TP1_Discrete\TP1\Graphe.cp
   The contents of <string_view> are available only with C++17 or later.
 C:\Users\johnm\Desktop\poly\Session 3\log 2810\TD\Tp1\TP1_Discrete\TP1\Coordonne.h(16,21): warning C4200: nonstandard extension used: zero-sized array in struct/union
 C:\Users\johnm\Desktop\poly\Session 3\log 2810\TD\Tp1\TP1_Discrete\TP1\Coordonne.h(16,21): message : This member will be ignored by a defaulted constructor or copy/move assignment operator
+  Chemin.cpp
+  The contents of <string_view> are available only with C++17 or later.
   Generating Code...
   TP1.vcxproj -> C:\Users\johnm\Desktop\poly\Session 3\log 2810\TD\Tp1\TP1_Discrete\TP1\x64\Debug\TP1.exe

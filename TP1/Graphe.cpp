@@ -189,10 +189,19 @@ void Graph::plusCourtChemin(int origine, int destination) {
 
 /*Écrire une fonction “afficherGraphe()” qui permet d’afficher le graphe (cf. annexe a. pour un
 	exemple d’affichage de la carte sous forme de graphe).*/
-void Graph::AfficherGraphe(Graph& graphe) {
+void Graph::AfficherGraphe() {
 
+	Graph graphe; 
 	graphe.CreerGraphe(Fichierarrondissement); 
 
+	for (int i = 0; i < 21; i++) {
+
+		for (int j = 0; j < 21; j++) {
+
+
+		}
+
+	}
 
 	
 

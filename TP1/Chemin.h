@@ -14,7 +14,7 @@ public:
 		origine_ = Arrondissement();
 		destination_ = Arrondissement();
 		trajet_ =99999;
-		nb_trajtet_modifié = 0;
+
 	};
 
 	int get_trajet() const;
@@ -29,5 +29,4 @@ private:
 	int trajet_;
 	Arrondissement origine_;
 	Arrondissement destination_;
-	int nb_trajtet_modifié;
 };
