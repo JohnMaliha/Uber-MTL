@@ -27,6 +27,12 @@
     <ClCompile Include="Graphe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Coordonne.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Requete.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h">
@@ -36,6 +42,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Chemin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Requete.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

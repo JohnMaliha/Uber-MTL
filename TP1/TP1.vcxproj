@@ -138,15 +138,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Coordonne.cpp" />
     <ClCompile Include="Graphe.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Arrondissement.cpp" />
     <ClCompile Include="Chemin.cpp" />
+    <ClCompile Include="Requete.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chemin.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Arrondissement.h" />
+    <ClInclude Include="Requete.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="arrondissements.txt" />

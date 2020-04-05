@@ -4,12 +4,12 @@
 #include<string>
 
 
-class Requette {
+class Requete {
 
 public: 
 
-	Requette(); 
-	void LireRequette(const string& nomFichier); 
+	Requete(); 
+	void LireRequete(const string& nomFichier); 
 
 private:
 
