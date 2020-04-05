@@ -23,8 +23,8 @@ int main() {
 
 	lireFichierPremierePartie("arrondissements.txt");
 	Graph graphe;
-	int orig = 1;
-	int dest = 15;
+	int orig = 15;
+	int dest = 18;
 	plusCourtChemin(orig, dest);
 	/*
 
@@ -167,9 +167,19 @@ void plusCourtChemin(int orig, int dest) {
 			derniereDest = cheminsPris[y - 1].get_origine().getNumero();
 		}
 	}
-	batterie -= minutes; //donner le pourcentage de batterie qui reste
-
-	//listeFinale contient le meilleur chemin sommet à som
+	cout << "depart : point " << orig << ", destination : point " << dest << endl;
+	if (y != 1 && derniereDest != orig) {
+		for (int z = x; z != 0; z--) {
+			int minutesT = graphe.liste_trajets[listeFinale[z]][listeFinale[z - 1]];
+			batterie -= minutesT; //donner le pourcentage de batterie qui reste
+			cout << "point " << listeFinale[z] << " -> point " << listeFinale[z - 1] << " ; " << minutesT << "mn ; batterie : " << batterie << "%"<<  endl;
+		}
+	}
+	else
+	{
+		cout << "point " << orig << " -> point " << dest << " ; " << graphe.liste_trajets[orig][dest] << "mn ; batterie : " << batterie- graphe.liste_trajets[orig][dest] <<"%"<< endl;
+	}
+	cout << "duree totale du trajet : " << minutes<<"mn"<<endl;
 }
 
 
