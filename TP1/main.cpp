@@ -13,7 +13,7 @@ using namespace std;
 const string& arrondissement = "arrondissements.txt";
 const string& requetes = "requetes.txt"; 
 
-void plusCourtChemin(int orig, int dest);
+//void plusCourtChemin(int orig, int dest);
 //void lireFichierPremierePartie(const string& nomFichier); 
 void quit(); 
 
@@ -26,7 +26,7 @@ int main() {
 	graphe.CreerGraphe(arrondissement); 
 	int orig = 14;
 	int dest = 12;
-	plusCourtChemin(orig, dest);
+	graphe.plusCourtChemin(orig, dest);
 	/*
 
 	// ===============================Algo Dijks==========================// 
@@ -81,91 +81,6 @@ int main() {
 	return 0;
 }
 
-
-/*Écrire la fonction ”plusCourtChemin()” qui permet de déterminer, en vous inspirant de l’algorithme
-de Dijkstra, le plus court chemin entre un sommet et un autre. L’origine (point de départ)
-et la destination (sommet d’arrivée) doivent être passées en paramètres. La fonction affiche le
-pourcentage final d’énergie dans les batteries de la voiture, le plus court chemin utilisé (d’après
-la liste de ses sommets, selon le format de l’annexe) et la longueur de ce dernier en minutes.*/
-
-void plusCourtChemin(int orig, int dest) {
-	Graph graphe;
-	graphe.CreerGraphe(arrondissement); 
-	int trajetsLongueurs[20]; // L
-	bool trajetsFaits[20]; // S
-
-	Chemin cheminsPris[1000]; // enregiste les chemins essayés
-	Chemin minICheminSommet;
-	Chemin minICheminTotal;
-
-	int o = 0;
-	int q = 20;
-	for (int i = 0; i < 20; i++) { trajetsLongueurs[i] = 99999; trajetsFaits[i] = 0;} // tous les chemins infinis et aucun trajet fait
-	trajetsLongueurs[orig] = 0; // orig a zero
-	trajetsFaits[orig] = 1; // sommet orig fait
-	while (trajetsFaits[dest] == false) {
-		minICheminTotal.set_trajet(99999);
-		minICheminSommet.set_trajet(99999);
-		for (int j = 0; j < 20; j++) { //pour tous les sommets deja integrés
-			if (trajetsFaits[j]) {
-				int trajetMin = 99999;
-				int minID = j;
-				for (int k = 0; k < 20; k++) {
-					if (graphe.liste_trajets[j][k] < trajetsLongueurs[k] && trajetsFaits[k] == false) { // regarde les voisins non integrés de chaque sommets fait
-						if (graphe.liste_trajets[j][k] + trajetsLongueurs[j] < trajetMin){ // on recupere le sommet non connu avec le chemin le plus court pour chaque sommet connu
-							trajetMin = graphe.liste_trajets[j][k] + trajetsLongueurs[j];
-							minICheminSommet = Chemin(trajetMin, Arrondissement(j, graphe.liste_chemins[j].get_origine().ARecharge()), Arrondissement(k, graphe.liste_chemins[k].get_destination().ARecharge()));
-						}						
-					}
-				}
-				if (minICheminSommet.get_trajet() < minICheminTotal.get_trajet()) { minICheminTotal = minICheminSommet; } // meilleur sommet inconnu voisin de tous les sommets connus
-			}
-		}
-		trajetsLongueurs[minICheminTotal.get_destination().getNumero()] = minICheminTotal.get_trajet(); // om met a jour sa longueur
-		trajetsFaits[minICheminTotal.get_destination().getNumero()] = true; // on l'ajout aux soommets connnus
-		cheminsPris[++o] = minICheminTotal;  // on le met dans le tableau de chemins essayés
-		cout << cheminsPris[o].get_origine().getNumero() << " "<< cheminsPris[o].get_destination().getNumero() << " " << cheminsPris[o].get_trajet() << endl;
-	} // destination atteinte, maintenant donner le chemin precis
-	bool bonChemin = false;
-	int batterie = 100;
-	int minutes = 0;
-	int listeFinale[20];
-	int y = o+1;
-	int x = 2;
-	int derniereDest = cheminsPris[o].get_origine().getNumero();
-	listeFinale[0] = cheminsPris[o].get_destination().getNumero();
-	listeFinale[1] = derniereDest;
-	minutes += cheminsPris[o].get_trajet();
-	if (y != 1 && derniereDest != orig) {
-		while (!bonChemin)
-		{
-			while (cheminsPris[y - 1].get_destination().getNumero() != derniereDest)
-			{
-				y--;
-			}
-			if (cheminsPris[y - 1].get_origine().getNumero() == orig) {
-				bonChemin = true;
-				listeFinale[x] = orig;
-				break;
-			}
-			listeFinale[x++] = cheminsPris[y - 1].get_origine().getNumero();
-			derniereDest = cheminsPris[y - 1].get_origine().getNumero();
-		}
-	}
-	cout << "depart : point " << orig << ", destination : point " << dest << endl;
-	if (y != 1 && derniereDest != orig) {
-		for (int z = x; z != 0; z--) {
-			int minutesT = graphe.liste_trajets[listeFinale[z]][listeFinale[z - 1]];
-			batterie -= minutesT; //donner le pourcentage de batterie qui reste
-			cout << "point " << listeFinale[z] << " -> point " << listeFinale[z - 1] << " ; " << minutesT << "mn ; batterie : " << batterie << "%"<<  endl;
-		}
-	}
-	else
-	{
-		cout << "point " << orig << " -> point " << dest << " ; " << graphe.liste_trajets[orig][dest] << "mn ; batterie : " << batterie- graphe.liste_trajets[orig][dest] <<"%"<< endl;
-	}
-	cout << "duree totale du trajet : " << minutes<<"mn"<<endl;
-}
 
 
 
