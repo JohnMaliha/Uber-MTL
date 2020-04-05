@@ -13,7 +13,7 @@ using namespace std;
 const string& arrondissement = "arrondissements.txt";
 const string& requetes = "requetes.txt"; 
 
-
+void plusCourtChemin(int orig, int dest);
 void lireFichierPremierePartie(const string& nomFichier); 
 void quit(); 
 
@@ -23,7 +23,9 @@ int main() {
 
 	lireFichierPremierePartie("arrondissements.txt");
 	Graph graphe;
-	int a = 0;
+	int orig = 1;
+	int dest = 15;
+	plusCourtChemin(orig, dest);
 	/*
 
 	// ===============================Algo Dijks==========================// 
@@ -117,7 +119,8 @@ void plusCourtChemin(int orig, int dest) {
 	trajetsLongueurs[orig] = 0; // orig a zero
 	trajetsFaits[orig] = 1; // sommet orig fait
 	while (trajetsFaits[dest] == false) {
-		
+		minICheminTotal.set_trajet(99999);
+		minICheminSommet.set_trajet(99999);
 		for (int j = 0; j < 20; j++) { //pour tous les sommets deja integrés
 			if (trajetsFaits[j]) {
 				int trajetMin = 99999;
@@ -126,42 +129,47 @@ void plusCourtChemin(int orig, int dest) {
 					if (graphe.liste_trajets[j][k] < trajetsLongueurs[k] && trajetsFaits[k] == false) { // regarde les voisins non integrés de chaque sommets fait
 						if (graphe.liste_trajets[j][k] + trajetsLongueurs[j] < trajetMin){ // on recupere le sommet non connu avec le chemin le plus court pour chaque sommet connu
 							trajetMin = graphe.liste_trajets[j][k] + trajetsLongueurs[j];
-							minICheminSommet = Chemin(graphe.liste_trajets[j][k], Arrondissement(j, graphe.liste_chemins[j].get_origine().ARecharge()), Arrondissement(k, graphe.liste_chemins[k].get_destination().ARecharge()));
+							minICheminSommet = Chemin(trajetMin, Arrondissement(j, graphe.liste_chemins[j].get_origine().ARecharge()), Arrondissement(k, graphe.liste_chemins[k].get_destination().ARecharge()));
 						}						
 					}
 				}
 				if (minICheminSommet.get_trajet() < minICheminTotal.get_trajet()) { minICheminTotal = minICheminSommet; } // meilleur sommet inconnu voisin de tous les sommets connus
-				trajetsLongueurs[minICheminTotal.get_destination().getNumero()] = graphe.liste_trajets[j][minICheminTotal.get_destination().getNumero()] + trajetsLongueurs[j]; // om met a jour sa longueur
-				trajetsFaits[minICheminTotal.get_destination().getNumero()] = true; // on l'ajout aux soommets connnus
-				cheminsPris[o++] = minICheminTotal;  // on le met dans le tableau de chemins essayés
 			}
 		}
+		trajetsLongueurs[minICheminTotal.get_destination().getNumero()] = minICheminTotal.get_trajet(); // om met a jour sa longueur
+		trajetsFaits[minICheminTotal.get_destination().getNumero()] = true; // on l'ajout aux soommets connnus
+		cheminsPris[++o] = minICheminTotal;  // on le met dans le tableau de chemins essayés
+		cout << cheminsPris[o].get_origine().getNumero() << " "<< cheminsPris[o].get_destination().getNumero() << " " << cheminsPris[o].get_trajet() << endl;
 	} // destination atteinte, maintenant donner le chemin precis
 	bool bonChemin = false;
 	int batterie = 100;
 	int minutes = 0;
 	int listeFinale[20];
-	int y = o;
-	int x = 1;
+	int y = o+1;
+	int x = 2;
 	int derniereDest = cheminsPris[o].get_origine().getNumero();
 	listeFinale[0] = cheminsPris[o].get_destination().getNumero();
+	listeFinale[1] = derniereDest;
 	minutes += cheminsPris[o].get_trajet();
-	while (!bonChemin)
-	{
-		while (cheminsPris[y - 1].get_destination().getNumero() != derniereDest)
+	if (y != 1 && derniereDest != orig) {
+		while (!bonChemin)
 		{
-			y--;
+			while (cheminsPris[y - 1].get_destination().getNumero() != derniereDest)
+			{
+				y--;
+			}
+			if (cheminsPris[y - 1].get_origine().getNumero() == orig) {
+				bonChemin = true;
+				listeFinale[x] = orig;
+				break;
+			}
+			listeFinale[x++] = cheminsPris[y - 1].get_origine().getNumero();
+			derniereDest = cheminsPris[y - 1].get_origine().getNumero();
 		}
-		minutes += cheminsPris[y - 1].get_trajet(); 
-		if (cheminsPris[y-1].get_origine().getNumero() == orig) {
-			bonChemin = true;
-			listeFinale[x] = orig;
-			break;
-		}
-		listeFinale[x++] = cheminsPris[y - 1].get_origine().getNumero();
-		derniereDest = cheminsPris[y - 1].get_origine().getNumero();
 	}
 	batterie -= minutes; //donner le pourcentage de batterie qui reste
+
+	//listeFinale contient le meilleur chemin sommet à som
 }
 
 
