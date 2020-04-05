@@ -75,10 +75,10 @@ int main() {
 
 		default : 
 
-			cin.clear(); 
+			//cin.clear(); 
 			string cmp; 
 			getline(cin, cmp); 
-
+			//cout << cmp; 
 			if (cmp == "uitter" ) {
 
 				cout << "Au revoir!" << endl;
@@ -87,7 +87,7 @@ int main() {
 
 			}
 			else {
-				cout << "Veuillez selectionner une valeur permise. " << endl << endl;
+				cout <<endl << "Veuillez selectionner une valeur permise. " << endl << endl;
 				
 			}
 		}
