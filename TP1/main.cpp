@@ -13,110 +13,105 @@ using namespace std;
 const string& arrondissement = "arrondissements.txt";
 const string& requetes = "requetes.txt"; 
 
-//void plusCourtChemin(int orig, int dest);
-//void lireFichierPremierePartie(const string& nomFichier); 
-void quit(); 
-
-
-
 int main() {
 
-	//lireFichierPremierePartie("arrondissements.txt");
 	Graph graphe;
-	graphe.CreerGraphe(arrondissement); 
-	graphe.AfficherGraphe(); 
-	int orig = 14;
-	int dest = 12;
-	graphe.plusCourtChemin(orig, dest);
-
-	/*
-
-	// ===============================Algo Dijks==========================// 
-	
-	Graph graphe;
-	graphe.remplirListeArrondissements;
-	graphe.remplirListeChemins;
-
-
-	afficherGraphe(graphe);
-	plusCourtChemin(graphe.liste_chemins);
-	traiterRequetes();
-	*/
-
-	// ===============================Algo Dijks==========================// 
 
 	//=======================Affichage====================================//
-		//Menu
-	cout << endl << " ----------------------- MENU -----------------------" << endl << endl;
-
 	//controle
-	quit();
+	char value = { }; 
+	string quitter = "Quitter"; 
+
+	//Menu
 	cin.clear();
-	char value = { };
-	cin >> value;
+	cout << endl << "Bienvenu sur POLY Uber " << endl << endl;
 
-	switch (value)
-	{
+	do {
 
-	case 'd':
-		cout << "Menu" << endl;
-		break;
+		cout << endl << " ----------------------- MENU -------------------------------------------------------------" << endl << endl;
+		cout << " a- Mettre à jour la carte. " << endl << " b- Déterminer le plus court chemin sécuritaire. " << endl
+			<< " c- Traiter les requêtes." << endl << " d- Quitter " << endl << " Veuillez indiquer une option : " << endl;
+		
 
-	case 'a':
-		cout << "Lecture nouvelle carte" << endl;
-		break;
+		cin >> value;
+		switch (value){
 
-	case 'b':
-		cout << "plus court chemin securitaire" << endl;
-		break;
+		case 'a':
+			cout << "Lecture nouvelle carte : ";
 
-	case 'c':
-		cout << "traiter les requetes" << endl;
-		break;
+			//graphe.CreerGraphe(arrondissement);
+			graphe.AfficherGraphe();
+			break;
+
+		case 'b':
+
+			cout << "Plus court chemin securitaire : " << endl;
+			cin.clear();
+			cin.get();
+			cout << "Veillez indiquer un point de depart (de 1 a 19) : ";
+
+			int orig, dest;
+			cin >> orig;
+			cout << "Veuillez indiquer un point d'arriver: ";
+			cin >> dest;
+			graphe.CreerGraphe(arrondissement);  // reinitialisation.
+			graphe.plusCourtChemin(orig, dest);
+			cin.clear();
+			break;
 
 
-	default:
-		break;
-	}
+		case 'c':
+			cout << "Traiter les requetes : " << endl;
+			graphe.CreerGraphe(arrondissement);  // reinitialisation. 
+
+
+			break; 
+
+		case 'd':
+			cout << "Au revoir!" << endl;
+			cin.clear();
+			exit(EXIT_FAILURE);
+			break;
+
+		default : 
+			cout << "Au revoir!" << endl;
+			exit(EXIT_FAILURE); // force un quit. 
+			break; 
+			
+		}
+	}               
+	while (value != 'd' && getline(cin, quitter)); // verifie si on a d ou quitter. 
+
+
+
 	//=======================Affichage====================================//
-	
+
+
 	return 0;
 }
 
+/*
+// ===============================Algo Dijks==========================//
+
+Graph graphe;
+graphe.remplirListeArrondissements;
+graphe.remplirListeChemins;
 
 
-
-/*Écrire la fonction ”traiterRequetes()” qui permet de déterminer, en vous inspirant de l’algorithme
-de Dijkstra, la faisabilité de requêtes de clients(nombre maximum de quatre clients à la fois à
-l’intérieur de la voiture, charge qui ne baisse pas en dessous de 15 % , contraintes temporelles
-des clients) et de déterminer le chemin qu’il faut prendre pour desservir ceux - ci.Les requêtes
-proviennent d’un fichier qui s’intitule requetes.txt et elles devront être traitées selon leur ordre
-d’arrivée(leur ordre dans le fichier).La fonction affiche le pourcentage final d’énergie dans les
-batteries de la voiture, le plus court chemin utilisé(les sommets où les clients ont été ramassés,
-ceux où la voiture a été rechargée et les identifiants des clients doivent être clairment identifiés)
-et la longueur de ce dernier en minutes.*/
-
-void traiterRequetes() {
-}
-
+afficherGraphe(graphe);
+plusCourtChemin(graphe.liste_chemins);
+traiterRequetes();
+*/
 
 // ===============================Algo Dijks==========================// 
 
 
 
 
-//===================Affichage========================// 
-//Pour l'affichage
-// permet davoir le quit
-void quit() {
-	string quit;
-	cin >> quit;
-	if (quit == "quitter" || quit == "Quitter") {
-		cout << "menu" << endl;
-		return;
-	}
-	return;
-}
+// ===============================Algo Dijks==========================// 
+
+
+
 
 
 /*

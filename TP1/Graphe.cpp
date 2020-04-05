@@ -114,7 +114,7 @@ void Graph::plusCourtChemin(int origine, int destination) {
 	Chemin cheminsPris[1000]; // enregiste les chemins essayés
 	Chemin minICheminSommet;
 	Chemin minICheminTotal;
-
+	cout << "Le chemin le plus court est : " << endl << endl; 
 	int o = 0;
 	int q = 20;
 	for (int i = 0; i < 20; i++) { trajetsLongueurs[i] = 99999; trajetsFaits[i] = 0; } // tous les chemins infinis et aucun trajet fait
@@ -141,7 +141,7 @@ void Graph::plusCourtChemin(int origine, int destination) {
 		trajetsLongueurs[minICheminTotal.get_destination().getNumero()] = minICheminTotal.get_trajet(); // om met a jour sa longueur
 		trajetsFaits[minICheminTotal.get_destination().getNumero()] = true; // on l'ajout aux soommets connnus
 		cheminsPris[++o] = minICheminTotal;  // on le met dans le tableau de chemins essayés
-		cout << cheminsPris[o].get_origine().getNumero() << " " << cheminsPris[o].get_destination().getNumero() << " " << cheminsPris[o].get_trajet() << endl;
+		//cout << cheminsPris[o].get_origine().getNumero() << " " << cheminsPris[o].get_destination().getNumero() << " " << cheminsPris[o].get_trajet() << endl;
 	} // destination atteinte, maintenant donner le chemin precis
 	bool bonChemin = false;
 	int batterie = 100;
@@ -186,35 +186,31 @@ void Graph::plusCourtChemin(int origine, int destination) {
 
 
 
-
-
-
-
-
-
 /*Écrire une fonction “afficherGraphe()” qui permet d’afficher le graphe (cf. annexe a. pour un
 	exemple d’affichage de la carte sous forme de graphe).*/
+
 void Graph::AfficherGraphe() {
+
 
 	Graph graphe1;
 	graphe1.CreerGraphe(Fichierarrondissement);
 
+	cout << " Les emplacements offert par le service : " << endl << endl; 
+    //<< "(noeud1," "borne ou pas," << "((" << "noeud voisin1 ,duree1)," "noeudvoisin2, duree2" ; 
+
 	for (int i = 0; i < 19; i++) { // le noeud origine
 
-		cout << "noeud " << i << endl;
-		cout << graphe1.liste_arrondissements[i].getNumero() << " a borne? " << graphe1.liste_arrondissements[i].ARecharge() << endl << endl;
+		cout << "(" << graphe1.liste_arrondissements[i].getNumero() << "," << graphe1.liste_arrondissements[i].ARecharge() << "," << "(" ;
 
+		for (int j = 0; j < 39; j++) { // les autres noeuds reliser au premier.  
+			
+			if (graphe1.liste_chemins[j].get_origine().getNumero() == graphe1.liste_arrondissements[i].getNumero()) {
 
-		//for (int j = 1; j < 19; j++) { // les autres noeuds reliser au premier.  
+				cout << "("<<graphe1.liste_chemins[j].get_destination().getNumero() << "," << graphe1.liste_chemins[j].get_trajet() << ")" << ",";
 
-			//if (graphe.liste_arrondissements[i].getNumero()  ) {
-
-				//cout << "(" << graphe.liste_arrondissements[i].getNumero() << "," << graphe.liste_arrondissements[i].ARecharge() << "," << "(" << "(";
-				//cout << graphe.liste_chemins[i].get_destination().getNumero() << "," << graphe.liste_chemins[i].get_trajet() << ",";
-			//}
-
-	//	}
-		//cout << endl; 
+			}
+		}
+		cout << "))" << endl;
 	}
 
 }
