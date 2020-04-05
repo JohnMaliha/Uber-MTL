@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Graphe.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Arrondissement.cpp" />
     <ClCompile Include="Chemin.cpp" />

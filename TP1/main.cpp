@@ -14,17 +14,18 @@ const string& arrondissement = "arrondissements.txt";
 const string& requetes = "requetes.txt"; 
 
 void plusCourtChemin(int orig, int dest);
-void lireFichierPremierePartie(const string& nomFichier); 
+//void lireFichierPremierePartie(const string& nomFichier); 
 void quit(); 
 
 
 
 int main() {
 
-	lireFichierPremierePartie("arrondissements.txt");
+	//lireFichierPremierePartie("arrondissements.txt");
 	Graph graphe;
-	int orig = 15;
-	int dest = 18;
+	graphe.CreerGraphe(arrondissement); 
+	int orig = 14;
+	int dest = 12;
 	plusCourtChemin(orig, dest);
 	/*
 
@@ -81,23 +82,6 @@ int main() {
 }
 
 
-/*Écrire une fonction récursive “creerGraphe()” qui permet de créer le graphe représentant les
-routes et les points centraux des arrondissements (sommets) à partir d’un fichier dont le nom est
-passé en paramètre.*/
-
-void creerGraphe() {
-
-	lireFichierPremierePartie(arrondissement); 
-	
-
-}
-
-/*Écrire une fonction “afficherGraphe()” qui permet d’afficher le graphe (cf. annexe a. pour un
-exemple d’affichage de la carte sous forme de graphe).*/
-
-void afficherGraphe() {
-}
-
 /*Écrire la fonction ”plusCourtChemin()” qui permet de déterminer, en vous inspirant de l’algorithme
 de Dijkstra, le plus court chemin entre un sommet et un autre. L’origine (point de départ)
 et la destination (sommet d’arrivée) doivent être passées en paramètres. La fonction affiche le
@@ -106,6 +90,7 @@ la liste de ses sommets, selon le format de l’annexe) et la longueur de ce derni
 
 void plusCourtChemin(int orig, int dest) {
 	Graph graphe;
+	graphe.CreerGraphe(arrondissement); 
 	int trajetsLongueurs[20]; // L
 	bool trajetsFaits[20]; // S
 
@@ -216,6 +201,9 @@ void quit() {
 	return;
 }
 
+
+/*
+
 //========================Lecture=======================// 
 //Fonction pour la lecture 
 void lireFichierPremierePartie(const string& nomFichier)
@@ -275,3 +263,4 @@ void lireFichierPremierePartie(const string& nomFichier)
 		fichierALire.close();
 	}
 }
+*/
