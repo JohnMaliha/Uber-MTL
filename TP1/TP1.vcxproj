@@ -150,6 +150,7 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Arrondissement.h" />
     <ClInclude Include="Requete.h" />
+    <ClInclude Include="RequeteUnique.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="arrondissements.txt" />

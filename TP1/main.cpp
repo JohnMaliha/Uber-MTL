@@ -8,14 +8,18 @@
 #include"Arrondissement.h"
 #include "Chemin.h"
 #include"Coordonne.h"
+#include"Requete.h"
+#include"RequeteUnique.h"
+
 using namespace std;
 
 const string& arrondissement = "arrondissements.txt";
-const string& requetes = "requetes.txt"; 
+const string& requetesFic = "requetes.txt"; 
 
 int main() {
 
-	Graph graphe;
+	Graph graphe;	
+	Requete requete; 
 
 	//=======================Affichage====================================//
 	//controle
@@ -63,7 +67,8 @@ int main() {
 		case 'c':
 			cout << "Traiter les requetes : " << endl;
 			graphe.CreerGraphe(arrondissement);  // reinitialisation. 
-
+			requete.LireRequete(requetesFic); 
+			requete.traiterRequetes(); 
 
 			break; 
 

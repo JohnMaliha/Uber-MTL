@@ -1,4 +1,6 @@
 #pragma once
+#ifndef Chemin_h
+#define Chemin_h
 
 #include <string>
 #include <string_view>
@@ -30,3 +32,5 @@ private:
 	Arrondissement origine_;
 	Arrondissement destination_;
 };
+
+#endif

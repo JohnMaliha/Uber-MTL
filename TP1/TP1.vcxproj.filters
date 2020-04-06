@@ -47,6 +47,9 @@
     <ClInclude Include="Requete.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RequeteUnique.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="arrondissements.txt">

@@ -15,6 +15,9 @@ public:
 	void CreerGraphe(const string& nomFichier);
 	void AfficherGraphe();
 	void plusCourtChemin(int origine, int destination); 
+	int getTrajet(int origine, int destination) { return liste_trajets[origine][destination]; }
+	Chemin getChemin(int chemin) { return liste_chemins[chemin]; }
+	Arrondissement getArrondissement(int arrond) { return liste_arrondissements[arrond]; }
 
 private:
 

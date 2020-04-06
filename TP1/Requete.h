@@ -2,22 +2,22 @@
 #ifndef Requette_h
 #define Requette_h
 
+#include "RequeteUnique.h"
+#include "Graph.h"
+
 using namespace std; 
 
 class Requete {
 
 public: 
 
-	Requete(); 
+	Requete() : premierPoint(99999) {};
 	void LireRequete(const string& Fichier); 
-
+	void traiterRequetes();
 private:
 
-	int ID_; 
-	int PointDepart_; 
-	int PointDArriver_; 
-	int TempsVoulu_; 
-
+	int premierPoint;
+	RequetteUnique listeRequete[10];
 };
 
 
