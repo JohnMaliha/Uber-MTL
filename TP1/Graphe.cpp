@@ -198,18 +198,19 @@ void Graph::AfficherGraphe() {
 	cout << " Les emplacements offert par le service : " << endl << endl;
 	//<< "(noeud1," "borne ou pas," << "((" << "noeud voisin1 ,duree1)," "noeudvoisin2, duree2" ; 
 
-	for (int i = 0; i < 19; i++) { // le noeud origine
+	for (int ir = 1; ir < 20; ir++) { // le noeud origine
 
-		cout << "(" << graphe1.liste_arrondissements[i].getNumero() << "," << graphe1.liste_arrondissements[i].ARecharge() << "," << "(";
+		cout << "( " << graphe1.liste_arrondissements[ir-1].getNumero() << ", " << graphe1.liste_arrondissements[ir-1].ARecharge() << ", " << "(";
 
-		for (int j = 0; j < 39; j++) { // les autres noeuds reliser au premier.  
+		for (int jr = 1; jr < 20; jr++) { // les autres noeuds reliser au premier.  
 
-			if (graphe1.liste_chemins[j].get_origine().getNumero() == graphe1.liste_arrondissements[i].getNumero()) {
+			if (graphe1.liste_trajets[ir][jr]<99999) {
 
-				cout << "(" << graphe1.liste_chemins[j].get_destination().getNumero() << "," << graphe1.liste_chemins[j].get_trajet() << ")" << ",";
+				cout << "( " << graphe1.liste_arrondissements[jr-1].getNumero() << ", " << graphe1.liste_trajets[ir][jr] << ")" << ",";
 
 			}
 		}
 		cout << "))" << endl;
 	}
+
 } 

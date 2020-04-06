@@ -1,20 +1,4 @@
-﻿  Coordonne.cpp
-C:\Users\aquiEstoy\Documents\Ingénierie\LOG2810\TP1_Discrete\TP1\Coordonne.h(16,21): warning C4200: nonstandard extension used: zero-sized array in struct/union
-C:\Users\aquiEstoy\Documents\Ingénierie\LOG2810\TP1_Discrete\TP1\Coordonne.h(16,21): message : This member will be ignored by a defaulted constructor or copy/move assignment operator
-  Graphe.cpp
+﻿  Graphe.cpp
   The contents of <string_view> are available only with C++17 or later.
 C:\Users\aquiEstoy\Documents\Ingénierie\LOG2810\TP1_Discrete\TP1\Graphe.cpp(43,46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  main.cpp
-  The contents of <string_view> are available only with C++17 or later.
-C:\Users\aquiEstoy\Documents\Ingénierie\LOG2810\TP1_Discrete\TP1\Coordonne.h(16,21): warning C4200: nonstandard extension used: zero-sized array in struct/union
-C:\Users\aquiEstoy\Documents\Ingénierie\LOG2810\TP1_Discrete\TP1\Coordonne.h(16,21): message : This member will be ignored by a defaulted constructor or copy/move assignment operator
-  Arrondissement.cpp
-  The contents of <string_view> are available only with C++17 or later.
-  Chemin.cpp
-  The contents of <string_view> are available only with C++17 or later.
-  Requete.cpp
-  The contents of <string_view> are available only with C++17 or later.
-C:\Users\aquiEstoy\Documents\Ingénierie\LOG2810\TP1_Discrete\TP1\Requete.cpp(161,35): warning C4804: '>': unsafe use of type 'bool' in operation
-  Generating Code...
-  LINK : C:\Users\aquiEstoy\Documents\Ingénierie\LOG2810\TP1_Discrete\TP1\x64\Debug\TP1.exe not found or not built by the last incremental link; performing full link
   TP1.vcxproj -> C:\Users\aquiEstoy\Documents\Ingénierie\LOG2810\TP1_Discrete\TP1\x64\Debug\TP1.exe
