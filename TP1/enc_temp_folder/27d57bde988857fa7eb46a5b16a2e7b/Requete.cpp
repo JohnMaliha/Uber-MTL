@@ -89,7 +89,7 @@ void Requete::traiterRequetes() {
 				}
 
 				if (client >= 1 && trajetIntermediaire == false) {
-					cout << endl << "embarquement du client " << client-1 << endl;
+					cout << endl << "embarquement du client " << client << endl;
 					nbPlacePrises++;
 					tempsTotal = 0;
 				}
