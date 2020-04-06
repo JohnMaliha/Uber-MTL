@@ -138,7 +138,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Coordonne.cpp" />
     <ClCompile Include="Graphe.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Arrondissement.cpp" />

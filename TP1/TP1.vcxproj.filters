@@ -27,9 +27,6 @@
     <ClCompile Include="Graphe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Coordonne.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Requete.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

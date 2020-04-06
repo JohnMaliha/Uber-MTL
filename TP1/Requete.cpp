@@ -56,7 +56,7 @@ et la longueur de ce dernier en minutes.*/
 
 void Requete::traiterRequetes() {
 	
-
+	bool contournement = false;
 	int positionActuelle = premierPoint;
 	bool faisable = true;
 	bool resteClients = true;
@@ -69,7 +69,14 @@ void Requete::traiterRequetes() {
 	}
 	listeEnsemblePassages[0] = premierPoint;
 	int passage = 1;
-	
+	bool letmesleep = false;
+	bool doitRecharger = false;
+	bool rechargefaite = true;
+
+	for (int w = 0; w < 20; w++) {
+
+	}
+
 	Graph graphe;
 	graphe.CreerGraphe("arrondissements.txt");
 
@@ -81,15 +88,46 @@ void Requete::traiterRequetes() {
 				int origine = listeRequete[client].getPointDepart();
 				int destination = listeRequete[client].getPointDArriver();
 
-				if (client >1  && listeRequete[client].getPointDepart() != positionActuelle) {
-					origine = listeRequete[client - 1].getPointDArriver();
-					destination = listeRequete[client].getPointDepart();
+				if (doitRecharger) {
+					client -= 1;
+					if (!letmesleep) {
+						origine = listeRequete[client].getPointDepart();
+						letmesleep = false;
+					}
+					else
+					{
+						origine = listeRequete[client].getPointDArriver();
+					} 
+					for (int ir = 1; ir < 20; ir++) { // le noeud origine
+						if (graphe.getTrajet(origine,ir) < 99999 && graphe.getArrondissement(ir-1).ARecharge() ){
+								destination = ir;
+								
+								cout << "Risque de plus de batterie, direction la borne la plus proche : " << ir<<endl;
+								break;
+						}
+					}
+				}
+				
+				else if (client >1  && listeRequete[client].getPointDepart() != positionActuelle) {
+					origine = positionActuelle;
+					if (contournement) {
+						destination = listeRequete[client].getPointDArriver();
+						contournement = false;
+						cout << "\non termine l'ancien trajet et on depose le client " << client-1 << endl;
+						client++;
+					}
+					else {
+						cout << "\non va cherche le prochain client non dans la voiture\n";
+						destination = listeRequete[client].getPointDepart();
+					}
 					trajetIntermediaire = true;
 					client -= 1;
 				}
 
-				if (client >= 1 && trajetIntermediaire == false) {
-					cout << endl << "embarquement du client " << client-1 << endl;
+				
+
+				if (client >= 1 && trajetIntermediaire == false && doitRecharger == false) {
+					cout << endl << "Prevision embarquement du client " << client-1 << endl;
 					nbPlacePrises++;
 					tempsTotal = 0;
 				}
@@ -184,30 +222,27 @@ void Requete::traiterRequetes() {
 								minutesT = graphe.getTrajet(listeFinale[z-1],listeFinale[z - 2]);
 								batterieFinale -= minutesT; //donner le pourcentage de batterie qui reste
 							
-								if (batterieFinale < 15) {
-									for (int f = x-1;f !=0;f--) {
-										if (graphe.getArrondissement(listeFinale[f]).ARecharge()) {
-											cout << "! Batterie bientot inferieur à 15% :" << batterieFinale << "%. recharge sur la borne " << listeFinale[f] << ", temps rallonge de 10mn" << endl;
-											batterieFinale = 100;
-											for (int d = f - 1;d != 0;d--) {
-												batterieFinale -= graphe.getTrajet(listeFinale[d + 1], listeFinale[d]);
-												if (x = f + 1)
-													break;
-												
-											}
-											if (f == 1) {
-												batterieFinale -= graphe.getTrajet(listeFinale[1], listeFinale[0]);
-											}
-
-											tempsTotal += 10;
-											break;
-										}
-									}
+								if (batterieFinale < 15 && doitRecharger != true) {
+									doitRecharger = true;
+									listeEnsemblePassages[--passage] = 0;
+									batterieFinale += minutesT;
+									rechargefaite = false;
+									if(tempsTotal!=0){ tempsTotal -= minutesT = graphe.getTrajet(listeFinale[z], listeFinale[z - 1]); }
+									
+									
+									break;
+					
 								}
 								if (batterieFinale < 0) {
 									faisable = false;
 									cout << "trajet non faisable, il faudrait des bornes de recharges dans nos trajets" << endl;
 								}
+
+								if (doitRecharger == true) {
+									doitRecharger = false;
+									batterieFinale = 100;
+								}
+								
 
 								tempsTotal += minutesT;
 								cout << "point " << listeFinale[z-1] << " -> point " << listeFinale[z - 2] << " ; " << minutesT << "mn ; batterie : " << batterieFinale << "%" << endl;
@@ -218,15 +253,28 @@ void Requete::traiterRequetes() {
 							cout << "point " << origine << " -> point " << destination << " ; " << 
 								minutesT << "mn ; batterie : " << batterieFinale << "%" << endl;; //donner le pourcentage de batterie qui reste 
 						}
-						cout << "duree totale du trajet : " << tempsTotal << "mn" << endl;
-						
+						if (!doitRecharger) {
+							cout << "duree totale du trajet : " << tempsTotal << "mn" << endl;
+						}
 
 						
 				}
 				else {
+
 					listeEnsemblePassages[passage++] = derniereDest;
 					int minutesT = graphe.getTrajet(origine, destination);
 					batterieFinale -= graphe.getTrajet(origine,destination); //donner le pourcentage de batterie qui reste
+
+					if (doitRecharger == true) {
+						doitRecharger = false;
+						batterieFinale = 100;
+						tempsTotal += 10;
+						cout << "10mn pour la recharge" << endl;
+						rechargefaite = true;
+						client -= 1;
+						contournement = true;
+					}
+
 					if (graphe.getArrondissement(listeEnsemblePassages[passage]).ARecharge() && batterieFinale < 15) {
 						batterieFinale = 100;
 						tempsTotal += 10;
@@ -236,29 +284,22 @@ void Requete::traiterRequetes() {
 					cout << "depart : point " << origine << ", destination : point " << destination << endl;
 					cout << "point " << origine << " -> point " << destination << " ; " <<
 						minutesT << "mn ; batterie : " << batterieFinale << "%" << endl;; //donner le pourcentage de batterie qui reste 
-					cout << "duree totale du trajet : " << tempsTotal << "mn" << endl;
+					cout << "duree totale du trajet : " << tempsTotal << "mn\n" << endl;
 					
 				}
-				positionActuelle = listeFinale[0];
-				if (!trajetIntermediaire && client!=0) {
-					if (nbPlacePrises == 1 && client !=9) {
-						cout << "Prochain client pas sur le chemin ou perdrait du temps, respect du fil des requetes" << endl;
+				if (!doitRecharger) {
+					positionActuelle = listeFinale[0];
+					if (!contournement && !trajetIntermediaire && client != 0) {
+						if (nbPlacePrises == 1 && client != 9) {
+							cout << "Prochain client pas sur le chemin ou perdrait du temps  (respect du fil des requetes)" << endl;
+						}
+						cout << "le client " << client - 1 << " a ete depose a sa destination\n" << endl;
+
+						nbPlacePrises--;
 					}
-					cout << "le client " << client-1 << " a ete depose a sa destination avec " << listeRequete[client].getTempsVoulu()- tempsTotal<< "mn d'avance sur son esperance\n" <<endl;
-					
-					nbPlacePrises--;
 				}
-			} cout << "\n";
-			/*
-			
-			for (int g = 0; g < 8; g++) {
-				if (listeRequete[g].getTempsVoulu() < 0) {
-					faisable = false;
-				}
-			}
-		*/
-	
-	
-	
-			int a = 0;
+				if (trajetIntermediaire && doitRecharger) { letmesleep = true; }
+				
+			} cout << "\n";	
+
 }
